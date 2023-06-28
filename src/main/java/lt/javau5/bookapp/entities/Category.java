@@ -1,0 +1,3 @@
+package lt.javau5.bookapp.entities;
+
+public enum Category{SCIENCE, MYSTERY, ROMANCE, HORROR, HISTORICAL, FANTASY, THRILLER, MEMOIR, HUMOR, POETRY, NOVEL, BIOGRAPHY, CHILDREN}

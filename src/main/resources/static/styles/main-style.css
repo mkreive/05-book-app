@@ -1,0 +1,138 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    line-height: 1.5;
+    font-family: 'Montserrat', sans-serif;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #EAEAEA;
+  padding: 3rem 5rem;
+}
+
+.header {
+color: #FF2E63;
+font-size: 2rem;
+text-transform: uppercase;
+font-weight: 800;
+}
+
+.table {
+overflow: hidden;
+font-size: 0.8rem;
+padding: 3rem 2rem;
+display: flex;
+flex-direction: column;
+gap: 0.8rem;
+}
+
+.row:nth-child(1) {
+font-size: 1rem;
+text-transform: uppercase;
+font-weight: 600;
+}
+
+.row {
+border-bottom: 0.2rem solid #08D9D6;
+padding: 1rem 1rem;
+margin-bottom: 10rem;
+}
+
+td {
+min-width: 13rem;
+padding: 0.1rem 0rem;
+}
+
+.form {
+overflow: hidden;
+font-size: 1rem;
+padding: 3rem;
+display: flex;
+flex-direction: column;
+gap: 0.2rem;
+}
+
+.button {
+border-radius: 0.3rem;
+border: none;
+background-color: #FF2E63;
+color: #fff;
+font-weight: 600;
+padding: 0.3rem 1rem;
+cursor: pointer;
+max-width: max-content;
+margin-right: 0.8rem;
+}
+
+.button:hover {
+background-color: #08D9D6;
+color: #252A34;
+}
+
+a {
+text-decoration: none;
+color: #fff;
+font-size: 0.8rem;
+}
+
+label {
+color: black;
+font-size 0.6rem;
+font-weight: 500;
+}
+
+.input {
+min-width: 20rem;
+background-color: #fff;
+color: black;
+border-radius: 0.3rem;
+padding: 0.3rem 0.5rem;
+margin-bottom: 1rem;
+outline: none;
+border: none;
+}
+
