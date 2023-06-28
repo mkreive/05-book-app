@@ -15,7 +15,7 @@
 <body>
 <div class="container">
   <h1 class="header">Add new product</h1>
-  <form action="/add" method="POST" th:object="${book}" class="form">
+  <form th:action="@{/add}"  method="post" th:object="${book}" class="form">
 
     <label for="isbn">ISBN</label>
     <input class="input" type="text" name="isbn" id="isbn" th:field="${book.ISBN}">
@@ -48,7 +48,7 @@
     <label for="amount">Amount</label>
     <input class="input" type="number" name="amount" id="amount" th:field="${book.amount}">
 
-    <button type="submit" class="button">Update Book</button>
+    <button type="submit" class="button" value="update book">Update Book</button>
   </form>
 </div>
 </body>

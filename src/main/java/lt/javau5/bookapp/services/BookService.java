@@ -42,6 +42,7 @@ public class BookService {
     }
 
     public void updateBook(Book book) throws BookNotFoundException {
+        System.out.println("updeitinam");
         Book found = repository.
                 findById(book.getId()).
                 orElseThrow(() -> new BookNotFoundException("Product not found with id " + book.getId()));
@@ -50,7 +51,7 @@ public class BookService {
         found.setAuthor(book.getAuthor());
         found.setCategory(book.getCategory());
         found.setAmount(book.getAmount());
-        repository.save(found);
+//        repository.save(found);
     }
 
     public void delete(Book book) {
