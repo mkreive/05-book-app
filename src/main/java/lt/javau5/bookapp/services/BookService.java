@@ -62,14 +62,19 @@ public class BookService {
 
         if(authorInDatabase != null) {
             // case if author IS in database
-            // update author in authorrepo
-            // write new book in bookrepo
+            System.out.println("FOUND MATCHING AUTHOR");
+            bookRepository.save(book);
+            authorInDatabase.addBook(book);
+            authorRepository.save(authorInDatabase);
+            System.out.println("database author books :" + authorInDatabase.getBooks());
 
         } else {
             // case if there is NO such author in database
+            System.out.println("NO MATCHING AUTHOR");
             authorRepository.save(author);
             bookRepository.save(book);
         }
+
 
     }
 

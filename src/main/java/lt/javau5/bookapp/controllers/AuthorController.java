@@ -28,8 +28,6 @@ public class AuthorController {
     public String getAuthorBooks(@PathVariable("id") Long id, Model model) throws AuthorNotFoundException {
         Author author = service.getById(id);
         List<Book> books = author.getBooks();
-        System.out.println(author);
-        System.out.println(books);
         model.addAttribute("books", books);
         return "author-books";
     }
