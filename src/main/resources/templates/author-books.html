@@ -22,22 +22,29 @@
   </label>
 </div>
 <div class="container">
-  <h1 class="header">Authors</h1>
+  <h1 class="header">Author Books List</h1>
   <table class="table">
     <tr class="row">
-      <td>Name</td>
-      <td>Surname</td>
+      <td>Title</td>
+      <td>Year</td>
+      <td>Category</td>
+      <td>ISBN</td>
+      <td>Amount</td>
       <td>Actions</td>
     </tr>
-    <tr class="row" th:each=" author : ${authors}">
-      <td th:text="${author.firstName}"></td>
-      <td th:text="${author.lastName}"></td>
+    <tr class="row" th:each="book : ${books}">
+      <td th:text="${book.name}"></td>
+      <td th:text="${book.year}"></td>
+      <td th:text="${book.category}"></td>
+      <td th:text="${book.ISBN}"></td>
+      <td th:text="${book.amount}"></td>
       <td>
-        <button class="button"><a th:href="@{'/author/' + ${author.id}}">Books</a></button>
-        <button class="button"><a th:href="@{'/author/delete/' + ${author.id}}">Delete</a></button>
+        <button class="button"><a th:href="@{'/edit/' + ${book.id}}">Edit</a></button>
+        <button class="button"><a th:href="@{'/delete/' + ${book.id}}">Delete</a></button>
       </td>
     </tr>
   </table>
+  <button class="button"><a href="/add">Add a new book</a></button>
 </div>
 
 

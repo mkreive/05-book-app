@@ -23,7 +23,7 @@
 </div>
 <div class="container">
   <h1 class="header">Edit book</h1>
-  <form th:action="@{/add}"  method="post" th:object="${book}" class="form">
+  <form th:action="@{/edit/{id}(id=${book.id})}"  method="post" th:object="${book}" class="form">
 
     <label for="isbn">ISBN</label>
     <input class="input" type="text" name="isbn" id="isbn" th:field="${book.ISBN}">

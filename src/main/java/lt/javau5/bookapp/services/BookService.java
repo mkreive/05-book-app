@@ -52,31 +52,52 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public void save(Book book) {
-        Author author = book.getAuthor();
-        System.out.println(author);
-        authorRepository.save(author);
-        bookRepository.save(book);
-    }
-
     public Book getById(Long id) {
         return bookRepository.findById(id).orElse(new Book());
+    }
+
+    public void save(Book book) {
+        Author author = book.getAuthor();
+        Author authorInDatabase = getAuthorFromDatabase(author);
+
+        if(authorInDatabase != null) {
+            // case if author IS in database
+            // update author in authorrepo
+            // write new book in bookrepo
+
+        } else {
+            // case if there is NO such author in database
+            authorRepository.save(author);
+            bookRepository.save(book);
+        }
+
     }
 
     public void updateBook(Book book) throws BookNotFoundException {
         Book found = bookRepository.
                 findById(book.getId()).
                 orElseThrow(() -> new BookNotFoundException("Product not found with such id"));
-        found.setISBN(book.getISBN());
-        found.setName(book.getName());
-        found.setAuthor(book.getAuthor());
-        found.setCategory(book.getCategory());
-        found.setAmount(book.getAmount());
-        bookRepository.save(found);
+        if(found != null) {
+            found.setISBN(book.getISBN());
+            found.setName(book.getName());
+            found.setAuthor(book.getAuthor());
+            found.setCategory(book.getCategory());
+            found.setAmount(book.getAmount());
+            bookRepository.save(found);
+            System.out.println("IN SERVICE IF NOT NULL CONDITION");
+        }
     }
 
     public void delete(Book book) {
         bookRepository.delete(book);
+    }
+
+    public Author getAuthorFromDatabase(Author author) {
+        return authorRepository.findAll()
+                .stream()
+                .filter(a -> a.getFirstName().equalsIgnoreCase(author.getFirstName().trim()))
+                .filter(a -> a.getLastName().equalsIgnoreCase(author.getLastName().trim()))
+                .findAny().orElse(null);
     }
 
 }

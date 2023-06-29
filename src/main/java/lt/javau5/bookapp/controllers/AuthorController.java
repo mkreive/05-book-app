@@ -1,10 +1,16 @@
 package lt.javau5.bookapp.controllers;
 
+import lt.javau5.bookapp.entities.Author;
+import lt.javau5.bookapp.entities.Book;
+import lt.javau5.bookapp.services.AuthorNotFoundException;
 import lt.javau5.bookapp.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Controller
 public class AuthorController {
@@ -16,6 +22,16 @@ public class AuthorController {
     public String getAuthors(Model model) {
         model.addAttribute("authors", service.getAll());
         return "authors";
+    }
+
+    @GetMapping("/author/{id}")
+    public String getAuthorBooks(@PathVariable("id") Long id, Model model) throws AuthorNotFoundException {
+        Author author = service.getById(id);
+        List<Book> books = author.getBooks();
+        System.out.println(author);
+        System.out.println(books);
+        model.addAttribute("books", books);
+        return "author-books";
     }
 
 //    @GetMapping("/add")

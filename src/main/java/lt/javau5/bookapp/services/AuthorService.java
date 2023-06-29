@@ -16,12 +16,12 @@ public class AuthorService {
         return repository.findAll();
     }
 
-    public void save(Author author) {
-        repository.save(author);
-    }
-
     public Author getById(Long id) {
         return repository.findById(id).orElse(new Author());
+    }
+
+    public void save(Author author) {
+        repository.save(author);
     }
 
     public void updateAuthor(Author author) throws AuthorNotFoundException {

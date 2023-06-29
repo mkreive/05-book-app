@@ -1,7 +1,6 @@
 package lt.javau5.bookapp.controllers;
 
 import lt.javau5.bookapp.entities.Book;
-import lt.javau5.bookapp.services.BookNotFoundException;
 import lt.javau5.bookapp.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,9 +30,6 @@ public class BookController {
 
     @PostMapping("/add")
     public String saveBook(Book book) {
-        System.out.println("testing from controller");
-        System.out.println(book);
-        System.out.println(book.getAuthor());
         service.save(book);
         return  "redirect:/index";
     }
@@ -46,14 +42,14 @@ public class BookController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateBook(@PathVariable("id") Long id) throws BookNotFoundException {
-        Book book = service.getById(id);
-        service.updateBook(book);
+    public String updateBook(@PathVariable("id") Long id, Book book)  {
+//        Book book = service.getById(id);
+        service.save(book);
         return "redirect:/index";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteBook(@PathVariable("id") Long id) throws BookNotFoundException {
+    public String deleteBook(@PathVariable("id") Long id)  {
         Book book = service.getById(id);
         service.delete(book);
         return "redirect:/index";

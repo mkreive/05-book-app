@@ -27,18 +27,17 @@
     <tr class="row">
       <td>Name</td>
       <td>Surname</td>
-      <td>Book</td>
+      <td>Actions</td>
     </tr>
     <tr class="row" th:each=" author : ${authors}">
-      <td th:text="${author.first_name}"></td>
-      <td th:text="${author.last_name}"></td>
-      <td th:text="${author.book}"></td>
+      <td th:text="${author.firstName}"></td>
+      <td th:text="${author.lastName}"></td>
       <td>
-<!--        <button class="button"><a th:href="@{'/delete/' + ${author.id}}">Delete</a></button>-->
+        <button class="button"><a th:href="@{'/author/' + ${author.id}}">Books</a></button>
+        <button class="button"><a th:href="@{'/author/delete/' + ${author.id}}">Delete</a></button>
       </td>
     </tr>
   </table>
-  <button class="button"><a href="/add">Add a new book</a></button>
 </div>
 
 
