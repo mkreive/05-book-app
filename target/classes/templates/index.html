@@ -23,18 +23,18 @@
       <td>Year</td>
       <td>Category</td>
       <td>Amount</td>
+      <td>Actions</td>
+
     </tr>
-    <tr class="row" th:each=" book : ${books}">
+    <tr class="row" th:each="book : ${books}">
       <td th:text="${book.ISBN}"></td>
       <td th:text="${book.name}"></td>
-      <td th:text="${book.author}"></td>
+      <td th:text="${book.author.firstName} + ' ' + ${book.author.lastName}"></td>
       <td th:text="${book.year}"></td>
       <td th:text="${book.category}"></td>
       <td th:text="${book.amount}"></td>
       <td>
         <button class="button"><a th:href="@{'/edit/' + ${book.id}}">Edit</a></button>
-      </td>
-      <td>
         <button class="button"><a th:href="@{'/delete/' + ${book.id}}">Delete</a></button>
       </td>
     </tr>

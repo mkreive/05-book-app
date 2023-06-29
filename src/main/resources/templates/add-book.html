@@ -23,8 +23,11 @@
       <label for="name">Name</label>
       <input class="input" type="text" name="name" id="name" th:field="${book.name}">
 
-      <label for="author">Author</label>
-      <input class="input" type="text" name="author" id="author" th:field="${book.author}">
+      <label for="authorname">Author Name</label>
+      <input class="input" type="text" name="author" id="authorname" th:field="${book.author.firstName}">
+
+      <label for="authorlastname">Author Last Name</label>
+      <input class="input" type="text" name="author" id="authorlastname" th:field="${book.author.lastName}">
 
       <label for="year">Year</label>
       <input class="input" type="number" name="year" id="year" th:field="${book.year}">

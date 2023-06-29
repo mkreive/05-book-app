@@ -1,7 +1,9 @@
 package lt.javau5.bookapp.services;
 
+import lt.javau5.bookapp.entities.Author;
 import lt.javau5.bookapp.entities.Book;
 import lt.javau5.bookapp.entities.Category;
+import lt.javau5.bookapp.repositories.AuthorRepository;
 import lt.javau5.bookapp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,50 +14,69 @@ import java.util.List;
 @Service
 public class BookService {
     @Autowired
-    BookRepository repository;
+    BookRepository bookRepository;
+
+    @Autowired
+    AuthorRepository authorRepository;
 
     public boolean seedBooks() {
-        if(repository.count() == 0) {
-        List<Book> library = new ArrayList<>();
-        library.add(new Book("9786090151235", "Green Light", "Matthew McConaughey", 2022, Category.BIOGRAPHY, 10));
-        library.add(new Book("9786090134054", "Animal", "Guillermo Arriaga", 2018, Category.THRILLER, 4));
-        library.add(new Book("9786094792144", "Kirk", "Madeline Miller", 2022, Category.FANTASY, 33));
-        library.add(new Book("9786090152904", "Piranesi", "Susanna Clarke", 2022, Category.FANTASY, 7));
-        library.add(new Book("9786090116845" ,"1000 Woman", "Hallgrimur Helgason", 2021, Category.NOVEL, 55));
-        library.add(new Book("9786090151044", "Chemistry Lessons", "Bonnie Garmus", 2022, Category.HUMOR, 199));
-        repository.saveAll(library);
-        return true;
+        if(bookRepository.count() == 0 && authorRepository.count() == 0) {
+            List<Book> books = new ArrayList<>();
+//        library.add(new Book( "9786090151044", "Chemistry Lessons", new Author( "Bonnie",  "Garmus"), 2022, Category.HUMOR, 199));
+//        library.add(new Book( "9786090152904", "Jonathan Strange & Mr Norrell", new Author( "Susanna", "Clarke"), 2022, Category.FANTASY, 7));
+//        library.add(new Book("9780062060624", "The Song of Achilles", new Author( "Madeline",  "Miller"), 2014, Category.FANTASY, 33));
+
+            Author author1 = new Author("Matthew", "McConaughey");
+            authorRepository.save(author1);
+            Author author2 = new Author( "Guillermo", "Arriaga");
+            authorRepository.save(author2);
+            Author author3 = new Author( "Madeline",  "Miller");
+            authorRepository.save(author3);
+            Author author4 = new Author( "Susanna", "Clarke");
+            authorRepository.save(author4);
+            Author author5 = new Author( "Hallgrimur", "Helgason");
+            authorRepository.save(author5);
+
+            books.add(new Book("9786090151235", "Green Lights", author1, 2022, Category.BIOGRAPHY, 10));
+            books.add(new Book( "9786090134054", "El Salvaje", author2, 2018, Category.THRILLER, 4));
+            books.add(new Book("9786094792144", "Circe", author3, 2022, Category.FANTASY, 33));
+            books.add(new Book( "9786090152904", "Piranesi", author4, 2022, Category.FANTASY, 7));
+            books.add(new Book( "9786090116845" ,"1000 Woman", author5, 2021, Category.NOVEL, 55));
+            bookRepository.saveAll(books);
+            return true;
         }
         return false;
     }
 
     public List<Book> getAll() {
-        return repository.findAll();
+        return bookRepository.findAll();
     }
 
     public void save(Book book) {
-        repository.save(book);
+        Author author = book.getAuthor();
+        System.out.println(author);
+        authorRepository.save(author);
+        bookRepository.save(book);
     }
 
-    public Book getById(long id) {
-        return repository.findById(id).orElse(new Book());
+    public Book getById(Long id) {
+        return bookRepository.findById(id).orElse(new Book());
     }
 
     public void updateBook(Book book) throws BookNotFoundException {
-        System.out.println("updeitinam");
-        Book found = repository.
+        Book found = bookRepository.
                 findById(book.getId()).
-                orElseThrow(() -> new BookNotFoundException("Product not found with id " + book.getId()));
+                orElseThrow(() -> new BookNotFoundException("Product not found with such id"));
         found.setISBN(book.getISBN());
         found.setName(book.getName());
         found.setAuthor(book.getAuthor());
         found.setCategory(book.getCategory());
         found.setAmount(book.getAmount());
-//        repository.save(found);
+        bookRepository.save(found);
     }
 
     public void delete(Book book) {
-        repository.delete(book);
+        bookRepository.delete(book);
     }
 
 }

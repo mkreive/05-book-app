@@ -1,26 +1,26 @@
 package lt.javau5.bookapp.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "book")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String ISBN;
     private String name;
-    private String author;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
     private int year;
     private Category category;
-    private long amount;
+    private int amount;
 
     public Book() {
     }
 
-    public Book(String ISBN, String name, String author, int year, Category category, long amount) {
+    public Book(String ISBN, String name, Author author, int year, Category category, int amount) {
         this.ISBN = ISBN;
         this.name = name;
         this.author = author;
@@ -53,11 +53,11 @@ public class Book {
         this.name = name;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
@@ -77,11 +77,11 @@ public class Book {
         this.category = category;
     }
 
-    public long getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(long amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

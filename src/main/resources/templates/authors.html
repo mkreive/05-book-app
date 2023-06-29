@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>LIBRARY</title>
+  <link th:href="@{/styles/main-style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+  <h1 class="header">Authors</h1>
+  <table class="table">
+    <tr class="row">
+      <td>Name</td>
+      <td>Surname</td>
+      <td>Book</td>
+    </tr>
+    <tr class="row" th:each=" author : ${authors}">
+      <td th:text="${author.first_name}"></td>
+      <td th:text="${author.last_name}"></td>
+      <td th:text="${author.book}"></td>
+      <td>
+<!--        <button class="button"><a th:href="@{'/delete/' + ${author.id}}">Delete</a></button>-->
+      </td>
+    </tr>
+  </table>
+  <button class="button"><a href="/add">Add a new book</a></button>
+</div>
+
+
+</body>
+</html>

@@ -16,9 +16,10 @@ public class MyConfiguration implements ApplicationRunner {
     @Autowired
     BookService service;
 
+
     @Override
     public void run(ApplicationArguments args) {
-        String msg = service.seedBooks() ? "Product added" : "Product not added";
+        String msg = service.seedBooks() ? "Books added" : "Book not added";
         log.info(msg);
     }
 }
