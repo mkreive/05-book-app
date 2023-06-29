@@ -13,8 +13,16 @@
 </head>
 
 <body>
+<div class="navigation">
+  <a class="nav" href="/index">Home</a>
+  <a class="nav" href="/authors">Authors</a>
+  <a class="nav" href="/add">Add Book</a>
+  <label for="search" class="input--search">
+    <input id="search" name="search"  type="text" placeholder="search..">
+  </label>
+</div>
 <div class="container">
-  <h1 class="header">Add new product</h1>
+  <h1 class="header">Edit book</h1>
   <form th:action="@{/add}"  method="post" th:object="${book}" class="form">
 
     <label for="isbn">ISBN</label>

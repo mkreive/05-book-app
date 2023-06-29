@@ -12,21 +12,6 @@ public class AuthorService {
     @Autowired
     AuthorRepository repository;
 
-//    public boolean seedAuthors() {
-//        if(repository.count() == 0) {
-//            List<Author> authors = new ArrayList<>();
-//            authors.add(new Author( "Matthew", "McConaughey"));
-//            authors.add(new Author("Guillermo", "Arriaga"));
-//            authors.add(new Author( "Madeline",  "Miller"));
-//            authors.add(new Author( "Susanna", "Clarke"));
-//            authors.add(new Author("Hallgrimur", "Helgason"));
-//            authors.add(new Author("Bonnie",  "Garmus"));
-//            repository.saveAll(authors);
-//            return true;
-//        }
-//        return false;
-//    }
-
     public List<Author> getAll() {
         return repository.findAll();
     }
